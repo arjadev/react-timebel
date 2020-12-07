@@ -9,11 +9,9 @@ import {
   Redirect,
   Route
 } from 'react-router-dom';
-import DashboardLayout from 'src/layouts/DashboardLayout';
 import MainLayout from 'src/layouts/MainLayout';
-import HomeView from 'src/views/pages/HomeView';
 import LoadingScreen from 'src/components/LoadingScreen';
-import AuthGuard from 'src/components/AuthGuard';
+import ProductCreateView from './views/management/ProductCreateView';
 
 const routesConfig = [
   {
@@ -27,122 +25,6 @@ const routesConfig = [
     component: lazy(() => import('src/views/pages/Error404View'))
   },
   {
-    exact: true,
-    path: '/login-unprotected',
-    component: lazy(() => import('src/views/auth/LoginView'))
-  },
-  {
-    exact: true,
-    path: '/register-unprotected',
-    component: lazy(() => import('src/views/auth/RegisterView'))
-  },
-  {
-    path: '/app',
-    guard: AuthGuard,
-    layout: DashboardLayout,
-    routes: [
-      {
-        exact: true,
-        path: '/app',
-        component: () => <Redirect to="/app/reports/dashboard" />
-      },
-      {
-        exact: true,
-        path: '/app/account',
-        component: lazy(() => import('src/views/pages/AccountView'))
-      },
-      {
-        exact: true,
-        path: '/app/reports/dashboard',
-        component: lazy(() => import('src/views/reports/DashboardView'))
-      },
-      {
-        exact: true,
-        path: '/app/reports/dashboard-alternative',
-        component: lazy(() => import('src/views/reports/DashboardAlternativeView'))
-      },
-      {
-        exact: true,
-        path: '/app/reports',
-        component: () => <Redirect to="/app/reports/dashboard" />
-      },
-      {
-        exact: true,
-        path: '/app/management/customers',
-        component: lazy(() => import('src/views/management/CustomerListView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers/:customerId',
-        component: lazy(() => import('src/views/management/CustomerDetailsView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/customers/:customerId/edit',
-        component: lazy(() => import('src/views/management/CustomerEditView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/products',
-        component: lazy(() => import('src/views/management/ProductListView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/products/create',
-        component: lazy(() => import('src/views/management/ProductCreateView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/orders',
-        component: lazy(() => import('src/views/management/OrderListView'))
-      },
-      {
-        exact: true,
-        path: '/app/management/orders/:orderId',
-        component: lazy(() => import('src/views/management/OrderDetailsView'))
-      },
-     
-      {
-        exact: true,
-        path: '/app/management',
-        component: () => <Redirect to="/app/management/customers" />
-      },
-      {
-        exact: true,
-        path: '/app/projects/overview',
-        component: lazy(() => import('src/views/projects/OverviewView'))
-      },
-      {
-        exact: true,
-        path: '/app/projects/browse',
-        component: lazy(() => import('src/views/projects/ProjectBrowseView'))
-      },
-      {
-        exact: true,
-        path: '/app/projects/create',
-        component: lazy(() => import('src/views/projects/ProjectCreateView'))
-      },
-      {
-        exact: true,
-        path: '/app/projects/:id',
-        component: lazy(() => import('src/views/projects/ProjectDetailsView'))
-      },
-      {
-        exact: true,
-        path: '/app/projects',
-        component: () => <Redirect to="/app/projects/browse" />
-      },
-      {
-        exact: true,
-        path: '/app/extra/charts/apex',
-        component: lazy(() => import('src/views/extra/charts/ApexChartsView'))
-      },
-      {
-        component: () => <Redirect to="/404" />
-      }
-    ]
-  },
-  {
 
     path: '*',
     layout: MainLayout,
@@ -150,7 +32,7 @@ const routesConfig = [
       {
         exact: true,
         path: '/home',
-        component: HomeView
+        component: ProductCreateView
       },
       {
         component: () => <Redirect to="/404" />
