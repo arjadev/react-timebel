@@ -134,21 +134,6 @@ const routesConfig = [
       },
       {
         exact: true,
-        path: '/app/social/feed',
-        component: lazy(() => import('src/views/social/FeedView'))
-      },
-      {
-        exact: true,
-        path: '/app/social/profile',
-        component: lazy(() => import('src/views/social/ProfileView'))
-      },
-      {
-        exact: true,
-        path: '/app/social',
-        component: () => <Redirect to="/app/social/profile" />
-      },
-      {
-        exact: true,
         path: '/app/extra/charts/apex',
         component: lazy(() => import('src/views/extra/charts/ApexChartsView'))
       },
