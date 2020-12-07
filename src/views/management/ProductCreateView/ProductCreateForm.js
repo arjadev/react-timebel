@@ -21,7 +21,6 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import QuillEditor from 'src/components/QuillEditor';
 
 const categories = [
   {
@@ -135,24 +134,7 @@ function ProductCreateForm({ className, ...rest }) {
                     value={values.name}
                     variant="outlined"
                   />
-                  <Box
-                    mt={3}
-                    mb={1}
-                  >
-                    <Typography
-                      variant="subtitle2"
-                      color="textSecondary"
-                    >
-                      Description
-                    </Typography>
-                  </Box>
-                  <Paper variant="outlined">
-                    <QuillEditor
-                      className={classes.editor}
-                      value={values.description}
-                      onChange={(value) => setFieldValue('description', value)}
-                    />
-                  </Paper>
+          
                   {(touched.description && errors.description) && (
                     <Box mt={2}>
                       <FormHelperText error>
@@ -304,7 +286,7 @@ function ProductCreateForm({ className, ...rest }) {
               type="submit"
               disabled={isSubmitting}
             >
-              Create product
+              Launch Event
             </Button>
           </Box>
         </form>
