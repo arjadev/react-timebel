@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import {
   AppBar,
   Box,
-  Button,
-  Divider,
   Toolbar,
   Hidden,
   Typography,
@@ -31,12 +29,6 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(2)
     }
   },
-  divider: {
-    width: 1,
-    height: 32,
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2)
-  }
 }));
 
 function TopBar({ className, ...rest }) {
@@ -71,28 +63,8 @@ function TopBar({ className, ...rest }) {
           underline="none"
           variant="body2"
         >
-          Dashboard
+          Cris
         </Link>
-
-        <Divider className={classes.divider} />
-        <Link
-          className={classes.link}
-          color="textSecondary"
-          component={RouterLink}
-          to="/login-unprotected"
-          underline="none"
-          variant="body2"
-        >
-          <Button
-            color="secondary"
-            component="a"
-            variant="contained"
-            size="small"
-          >
-            Login
-         </Button>
-        </Link>
-       
           
       </Toolbar>
     </AppBar>
