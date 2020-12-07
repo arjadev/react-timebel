@@ -32,6 +32,6 @@ The build is minified and the filenames include the hashes.<br>
 
 Your app is ready to be deployed.
 
-## User Guide
+## Tech Stack
 
-You can find detailed instructions on using Create React App and many tips in [its documentation](https://facebook.github.io/create-react-app/).
+React / Redux / Materials / Lazy Loading / Apex Chat

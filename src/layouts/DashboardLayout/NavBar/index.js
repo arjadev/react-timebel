@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import {
   Avatar,
   Box,
-  Chip,
   Divider,
   Drawer,
   Hidden,
@@ -19,24 +18,15 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import ReceiptIcon from '@material-ui/icons/ReceiptOutlined';
 import {
   Briefcase as BriefcaseIcon,
-  Calendar as CalendarIcon,
   ShoppingCart as ShoppingCartIcon,
   Folder as FolderIcon,
   BarChart as BarChartIcon,
   Lock as LockIcon,
   UserPlus as UserPlusIcon,
-  Shield as ShieldIcon,
   AlertCircle as AlertCircleIcon,
-  Trello as TrelloIcon,
   User as UserIcon,
-  Layout as LayoutIcon,
-  Edit as EditIcon,
-  DollarSign as DollarSignIcon,
-  Mail as MailIcon,
-  MessageCircle as MessageCircleIcon,
   PieChart as PieChartIcon,
   Share2 as ShareIcon,
   Users as UsersIcon
