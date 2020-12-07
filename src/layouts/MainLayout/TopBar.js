@@ -74,26 +74,27 @@ function TopBar({ className, ...rest }) {
         >
           Dashboard
         </Link>
+
+        <Divider className={classes.divider} />
         <Link
           className={classes.link}
           color="textSecondary"
           component={RouterLink}
-          to="/docs"
+          to="/login-unprotected"
           underline="none"
           variant="body2"
         >
-          Documentation
+          <Button
+            color="secondary"
+            component="a"
+            variant="contained"
+            size="small"
+          >
+            Login
+         </Button>
         </Link>
-        <Divider className={classes.divider} />
-        <Button
-          color="secondary"
-          component="a"
-          href="https://material-ui.com/store/items/devias-kit-pro"
-          variant="contained"
-          size="small"
-        >
-          Get the kit
-        </Button>
+       
+          
       </Toolbar>
     </AppBar>
   );

@@ -208,7 +208,7 @@ mock.onGet('/api/reports/latest-orders').reply(200, {
       currency: '$',
       customer: {
         name: 'Ekaterina Tankova',
-        email: 'ekaterina@devias.io'
+        email: 'ekaterina@cris.io'
       },
       status: 'pending',
       createdAt: moment()
@@ -225,7 +225,7 @@ mock.onGet('/api/reports/latest-orders').reply(200, {
       currency: '$',
       customer: {
         name: 'Cao Yu',
-        email: 'cao.yu@devias.io'
+        email: 'cao.yu@cris.io'
       },
       status: 'complete',
       createdAt: moment()
@@ -243,7 +243,7 @@ mock.onGet('/api/reports/latest-orders').reply(200, {
       currency: '$',
       customer: {
         name: 'Alex Richardson',
-        email: 'alex.richardson@devias.io'
+        email: 'alex.richardson@cris.io'
       },
       status: 'rejected',
       createdAt: moment()
@@ -261,7 +261,7 @@ mock.onGet('/api/reports/latest-orders').reply(200, {
       currency: '$',
       customer: {
         name: 'Anje Keizer',
-        email: 'anje.keiser@devias.io'
+        email: 'anje.keiser@cris.io'
       },
       status: 'pending',
       createdAt: moment()
@@ -279,7 +279,7 @@ mock.onGet('/api/reports/latest-orders').reply(200, {
       currency: '$',
       customer: {
         name: 'Clarke Gillebert',
-        email: 'clarke.gillebert@devias.io'
+        email: 'clarke.gillebert@cris.io'
       },
       status: 'complete',
       createdAt: moment()
@@ -297,7 +297,7 @@ mock.onGet('/api/reports/latest-orders').reply(200, {
       currency: '$',
       customer: {
         name: 'Merrile Burgett',
-        email: 'merrile.burgett@devias.io'
+        email: 'merrile.burgett@cris.io'
       },
       status: 'complete',
       createdAt: moment()

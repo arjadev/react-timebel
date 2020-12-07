@@ -2,7 +2,7 @@ import _ from 'lodash';
 import jwt from 'jsonwebtoken';
 import mock from 'src/utils/mock';
 
-const JWT_SECRET = 'devias-top-secret-key';
+const JWT_SECRET = 'cris-top-secret-key';
 const JWT_EXPIRES_IN = '2 days';
 
 const db = {
@@ -12,7 +12,7 @@ const db = {
     bio: 'Sales Manager',
     canHire: false,
     country: 'USA',
-    email: 'katarina.smith@devias.io',
+    email: 'katarina.smith@cris.io',
     username: 'admin',
     password: 'admin',
     firstName: 'Katarina',
@@ -28,7 +28,7 @@ const db = {
 mock.onPost('/api/account/login').reply((config) => {
   const { email, password } = JSON.parse(config.data);
 
-  if (email !== 'admin@devias.io' || password !== 'admin') {
+  if (email !== 'admin@cris.io' || password !== 'admin') {
     return [400, { message: 'Please check your email and password' }];
   }
 

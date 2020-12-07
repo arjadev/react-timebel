@@ -38,7 +38,7 @@ function Features({ className, ...rest }) {
           color="secondary"
           align="center"
         >
-          Explore Devias Kit Pro
+          Explore cris Kit Pro
         </Typography>
         <Typography
           variant="h1"

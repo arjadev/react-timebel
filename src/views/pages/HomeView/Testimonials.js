@@ -35,7 +35,7 @@ function Testimonials({ className, ...rest }) {
           color="textPrimary"
           className={classes.title}
         >
-          &quot;Devias builds some of the best templates you can find for React.
+          &quot;cris builds some of the best templates you can find for React.
           <br />
           They will save you time.&quot;
         </Typography>
@@ -45,13 +45,13 @@ function Testimonials({ className, ...rest }) {
           justifyContent="center"
           alignItems="center"
         >
-          <Avatar src="/static/home/olivier.png" />
+          <Avatar src="/static/home/cris.png" />
           <Box ml={2}>
             <Typography
               variant="body1"
               color="textPrimary"
             >
-              Olivier Tassinari
+              Crisosmoto Jurado
               <Typography
                 color="textSecondary"
                 display="inline"

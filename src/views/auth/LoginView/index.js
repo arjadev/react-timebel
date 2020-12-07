@@ -127,7 +127,7 @@ function LoginView() {
                 <div>
                   Use
                   {' '}
-                  <b>admin@devias.io</b>
+                  <b>admin@cris.io</b>
                   {' '}
                   and password
                   {' '}

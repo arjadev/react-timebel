@@ -25,10 +25,7 @@ import {
   BarChart as BarChartIcon,
   Lock as LockIcon,
   UserPlus as UserPlusIcon,
-  AlertCircle as AlertCircleIcon,
-  User as UserIcon,
   PieChart as PieChartIcon,
-  Share2 as ShareIcon,
   Users as UsersIcon
 } from 'react-feather';
 import Logo from 'src/components/Logo';
@@ -145,23 +142,6 @@ const navConfig = [
         href: '/register-unprotected',
         icon: UserPlusIcon
       },
-    ]
-  },
-  {
-    subheader: 'Pages',
-    href: '/app/pages',
-    items: [
-      {
-        title: 'Account',
-        href: '/app/account',
-        icon: UserIcon
-      },
-      {
-        title: 'Error',
-        href: '/404',
-        icon: AlertCircleIcon
-      },
-
     ]
   },
   {

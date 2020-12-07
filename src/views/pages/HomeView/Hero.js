@@ -76,7 +76,7 @@ function Hero({ className, ...rest }) {
                 variant="h1"
                 color="textPrimary"
               >
-                Devias React Material Kit - PRO
+                React/Redux Material Prototype Phrase 1 by Cris
               </Typography>
               <Box mt={3}>
                 <Typography

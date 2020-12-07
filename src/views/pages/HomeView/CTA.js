@@ -41,7 +41,7 @@ function CTA({ className, ...rest }) {
           align="center"
           color="secondary"
         >
-          Download Devias Material Kit today.
+          Download cris Material Kit today.
         </Typography>
         <Box
           mt={6}
@@ -52,7 +52,7 @@ function CTA({ className, ...rest }) {
           <Button
             color="secondary"
             component="a"
-            href="https://material-ui.com/store/items/devias-kit-pro"
+            href="https://material-ui.com/store/items/cris-kit-pro"
             variant="contained"
           >
             Get the kit

@@ -5,7 +5,7 @@ mock.onGet('/api/social/profile').reply(200, {
   user: {
     id: '5e86809283e28b96d2d38537',
     name: 'Katarina Smith',
-    email: 'katarina.smith@devias.io',
+    email: 'katarina.smith@cris.io',
     bio: 'Sales Manager',
     avatar: '/static/images/avatars/avatar_6.png',
     cover: '/static/images/covers/cover_1.jpg',
@@ -14,7 +14,7 @@ mock.onGet('/api/social/profile').reply(200, {
     quote: 'Everyone thinks of changing the world, but no one thinks of changing himself.',
     currentJob: {
       title: 'Product Designer',
-      company: 'Devias IO'
+      company: 'cris IO'
     },
     previousJob: {
       title: 'UX Designer at',

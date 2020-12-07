@@ -24,7 +24,7 @@ function LoginForm({ className, onSubmitSuccess, ...rest }) {
   return (
     <Formik
       initialValues={{
-        email: 'admin@devias.io',
+        email: 'admin@cris.io',
         password: 'admin'
       }}
       validationSchema={Yup.object().shape({
