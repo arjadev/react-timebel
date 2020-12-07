@@ -16,9 +16,7 @@ import {
   FormControlLabel,
   FormHelperText,
   Grid,
-  Paper,
   TextField,
-  Typography,
   makeStyles
 } from '@material-ui/core';
 

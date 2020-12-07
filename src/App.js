@@ -1,24 +1,17 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { create } from 'jss';
-import rtl from 'jss-rtl';
-import MomentUtils from '@date-io/moment';
 import { SnackbarProvider } from 'notistack';
 import {
   createStyles,
-  jssPreset,
   makeStyles,
-  StylesProvider,
   ThemeProvider
 } from '@material-ui/core';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import useSettings from 'src/hooks/useSettings';
 import { createTheme } from 'src/theme';
 import Routes from 'src/Routes';
 
 const history = createBrowserHistory();
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 const useStyles = makeStyles(() => createStyles({
   '@global': {
@@ -51,15 +44,11 @@ function App() {
 
   return (
     <ThemeProvider theme={createTheme(settings)}>
-      <StylesProvider jss={jss}>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
-          <SnackbarProvider maxSnack={1}>
-            <Router history={history}>
-              <Routes />
-            </Router>
-          </SnackbarProvider>
-        </MuiPickersUtilsProvider>
-      </StylesProvider>
+      <SnackbarProvider maxSnack={1}>
+        <Router history={history}>
+          <Routes />
+        </Router>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }
