@@ -13,7 +13,6 @@ import {
   ThemeProvider
 } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import Auth from 'src/components/Auth';
 import CookiesNotification from 'src/components/CookiesNotification';
 import SettingsNotification from 'src/components/SettingsNotification';
 import ScrollReset from 'src/components/ScrollReset';
@@ -59,12 +58,10 @@ function App() {
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <SnackbarProvider maxSnack={1}>
             <Router history={history}>
-              <Auth>
                 <ScrollReset />
                 <CookiesNotification />
                 <SettingsNotification />
                 <Routes />
-              </Auth>
             </Router>
           </SnackbarProvider>
         </MuiPickersUtilsProvider>
