@@ -13,7 +13,6 @@ import {
   Link,
   makeStyles
 } from '@material-ui/core';
-import { APP_VERSION } from 'src/config';
 import Logo from 'src/components/Logo';
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +59,7 @@ function TopBar({ className, ...rest }) {
           >
             Version
             {' '}
-            {APP_VERSION}
+            1.0.0
           </Typography>
         </Hidden>
         <Box flexGrow={1} />

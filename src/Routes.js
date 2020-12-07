@@ -25,7 +25,6 @@ const routesConfig = [
     component: lazy(() => import('src/views/pages/Error404View'))
   },
   {
-
     path: '*',
     layout: MainLayout,
     routes: [
