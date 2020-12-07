@@ -22,7 +22,6 @@ import {
   makeStyles
 } from '@material-ui/core';
 import QuillEditor from 'src/components/QuillEditor';
-import FilesDropzone from 'src/components/FilesDropzone';
 
 const categories = [
   {
@@ -163,15 +162,6 @@ function ProductCreateForm({ className, ...rest }) {
                   )}
                 </CardContent>
               </Card>
-              <Box mt={3}>
-                <Card>
-                  <CardHeader title="Upload Images" />
-                  <Divider />
-                  <CardContent>
-                    <FilesDropzone />
-                  </CardContent>
-                </Card>
-              </Box>
               <Box mt={3}>
                 <Card>
                   <CardHeader title="Prices" />
