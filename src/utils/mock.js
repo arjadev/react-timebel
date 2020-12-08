@@ -3,52 +3,42 @@ import { v4 as uuidv4 } from 'uuid';
 export const PARTICIPANTS = [
   {
     id: uuidv4(),
-    type: 'freelancer_basic',
+    watch: 'Apple Watch 5',
     name: 'Ekaterina Tankova',
     image: '/static/users/1.png',
-    subscriptions: '13,153',
-    currency: '$',
-    price: '5.00',
-    progress: 93
+    battery: 93,
+    connected: 'online',
   },
   {
     id: uuidv4(),
-    type: 'freelancer_extra',
+    watch: 'Fitbit versa2',
     name: 'Cao Yu',
     image: '/static/users/2.jpg',
-    subscriptions: '10,300',
-    currency: '$',
-    price: '15.00',
-    progress: 76
+    battery: 76,
+    connected: 'online',
   },
   {
     id: uuidv4(),
-    type: 'agency_basic',
+    watch: 'Scosche Rythym+',
     name: 'Alex Richardson',
     image: '/static/users/3.png',
-    subscriptions: '5,300',
-    currency: '$',
-    price: '25.00',
-    progress: 60
+    battery: 60,
+    connected: 'away',
   },
   {
     id: uuidv4(),
-    type: 'enterprise_basic',
+    watch: 'Fossil5',
     name: 'Anje Keizer',
     image: '/static/users/4.jpg',
-    subscriptions: '1,203',
-    currency: '$',
-    price: '205.00',
-    progress: 46
+    battery: 46,
+    connected: 'online',
   },
   {
     id: uuidv4(),
-    type: 'enterprise_extra',
+    watch: 'Nex',
     name: 'Katarina Smith',
     image: '/static/users/5.jpg',
-    subscriptions: '254',
-    currency: '$',
-    price: '500.00',
-    progress: 41
+    battery: 41,
+    connected: 'offline',
   }
 ]

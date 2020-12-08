@@ -12,6 +12,7 @@ import {
   makeStyles,
   Switch
 } from '@material-ui/core';
+import UtilService from 'src/utils/service';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -103,10 +104,11 @@ function EventModal({
             <Grid container spacing={3}>
                 <Grid item md={6} xs={12}>
                     <TextField
-                        id="datetime-local"
+                        id="start-date"
                         label="Start Date/Time"
                         type="datetime-local"
                         className={classes.textField}
+                        defaultValue={UtilService.getDateTime(new Date())}
                         InputLabelProps={{
                             shrink: true,
                         }}
@@ -114,8 +116,8 @@ function EventModal({
                 </Grid>
                 <Grid item md={6} xs={12}>
                     <TextField
-                        id="datetime-local"
-                        label="Start Date/Time"
+                        id="end-date"
+                        label="End Date/Time"
                         type="datetime-local"
                         className={classes.textField}
                         InputLabelProps={{
@@ -136,12 +138,9 @@ function EventModal({
             </Typography>
 
             <Switch
-                // checked={values.discountedPrices}
-                color="secondary"
-                edge="start"
-                name="discountedPrices"
-                // onChange={handleChange}
-                // value={values.discountedPrices}
+              color="primary"
+              edge="start"
+              name="discountedPrices"
             />
 
         </Box>

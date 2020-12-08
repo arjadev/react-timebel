@@ -5,6 +5,7 @@ import Application from './EventModal';
 import EventInformation from './EventInformation';
 import Participant from './Participant';
 import MainDataVisualization from './MainDataVisualization';
+import EventSummary from './EventSummary';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,6 +73,7 @@ function Home() {
               lg={9}
             >
               <MainDataVisualization />
+              <EventSummary />
             </Grid>
           </Grid>
         </Box>

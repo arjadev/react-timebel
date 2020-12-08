@@ -5,18 +5,18 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 56,
-    height: 56
+    width: 28,
+    height: 28
   },
   circle1: {
-    stroke: theme.palette.type === 'dark' ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.05)',
+    stroke: theme.palette.type === 'dark' ? 'rgba(0,0,0,0.35)' : 'rgba(0,0,0,0.15)',
     fill: 'none',
-    strokeWidth: 4
+    strokeWidth: 2
   },
   circle2: {
-    stroke: theme.palette.secondary.main,
+    stroke: theme.palette.primary.main,
     fill: 'none',
-    strokeWidth: 4,
+    strokeWidth: 3,
     animation: '$progress 1s ease-out forwards'
   },
   '@keyframes progress': {

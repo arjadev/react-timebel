@@ -11,33 +11,12 @@ import {
   TableCell,
   TableRow,
   Typography,
-  makeStyles,
-  colors,
   Avatar,
   withStyles,
   Badge
 } from '@material-ui/core';
-import CircularProgress from './CircularProgress';
+import CircularProgress from '../../components/CircularProgress';
 import { PARTICIPANTS } from 'src/utils/mock';
-
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  image: {
-    flexShrink: 0,
-    height: 56,
-    width: 56
-  },
-  subscriptions: {
-    fontWeight: theme.typography.fontWeightMedium
-  },
-  value: {
-    color: colors.green[600],
-    fontWeight: theme.typography.fontWeightMedium
-  },
-  navigateNextIcon: {
-    marginLeft: theme.spacing(1)
-  },
-}));
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -57,7 +36,6 @@ const StyledBadge = withStyles((theme) => ({
 }))(Badge);
 
 function Paricipant({ className, ...rest }) {
-  const classes = useStyles();
 
   return (
     <Box mt={3}>
@@ -98,26 +76,7 @@ function Paricipant({ className, ...rest }) {
                       </Box>
                     </Box>
                   </TableCell>
-                  <TableCell>
-                    <Typography
-                      variant="h6"
-                      color="textPrimary"
-                    >
-                      Price
-                    </Typography>
-                    <Typography
-                      noWrap
-                      variant="body2"
-                      color="textSecondary"
-                    >
-                      <span className={classes.value}>
-                        {user.currency}
-                        {user.price}
-                      </span>
-                      {' '}
-                        monthly
-                    </Typography>
-                  </TableCell>
+
                   <TableCell>
                     <Box
                       display="flex"
@@ -130,17 +89,11 @@ function Paricipant({ className, ...rest }) {
                           variant="h6"
                           color="textPrimary"
                         >
-                          {user.progress}
+                          {user.battery}
                             %
                         </Typography>
-                        <Typography
-                          variant="body2"
-                          color="textSecondary"
-                        >
-                          Conversion Rate
-                        </Typography>
                       </Box>
-                      <CircularProgress value={user.progress} />
+                      <CircularProgress value={user.battery} />
                     </Box>
                   </TableCell>
                 </TableRow>
