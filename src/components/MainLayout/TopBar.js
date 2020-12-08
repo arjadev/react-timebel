@@ -49,7 +49,7 @@ function TopBar({ className, ...rest }) {
             variant="caption"
             color="textSecondary"
           >
-            Immersin
+            immersion 
           </Typography>
         </Hidden>
         <Box flexGrow={1} />
