@@ -31,5 +31,5 @@ export default {
   },
   overline: {
     fontWeight: 500
-  }
+  },
 };

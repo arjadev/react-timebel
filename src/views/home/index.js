@@ -1,8 +1,10 @@
-import React from 'react';
-import { Container, makeStyles } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Container, makeStyles, Button, Box, Grid } from '@material-ui/core';
 import Page from 'src/components/Page';
-import Header from './Header';
-import ProductCreateForm from './ProductCreateForm';
+import Application from './EventModal';
+import EventInformation from './EventInformation';
+import Participant from './Participant';
+import MainDataVisualization from './MainDataVisualization';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,20 +12,75 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100%',
     paddingTop: theme.spacing(3),
     paddingBottom: 100
-  }
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
 }));
 
 function Home() {
   const classes = useStyles();
 
+  const [openApplication, setOpenApplication] = useState(false);
+
+  const handleApplicationOpen = () => {
+    setOpenApplication(true);
+  };
+
+  const handleApplicationClose = () => {
+    setOpenApplication(false);
+  };
+
   return (
     <Page
       className={classes.root}
-      title="Product Create"
+      title="Home"
     >
       <Container maxWidth="lg">
-        <Header />
-        <ProductCreateForm />
+        <Button
+          color='primary'
+          variant="contained"
+          onClick={handleApplicationOpen}
+        >
+          +
+        </Button>
+
+        <Box mt={2}>
+          <Grid
+            container
+            spacing={3}
+          >
+            <Grid
+              item
+              xs={12}
+              lg={3}
+            >
+              <EventInformation />
+              <Participant />
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              lg={9}
+            >
+              <MainDataVisualization />
+            </Grid>
+          </Grid>
+        </Box>
+        
+        <Application
+          onApply={handleApplicationClose}
+          onClose={handleApplicationClose}
+          open={openApplication}
+        />
       </Container>
     </Page>
   );
