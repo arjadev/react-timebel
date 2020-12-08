@@ -5,13 +5,13 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 28,
-    height: 28
+    width: 22,
+    height: 22
   },
   circle1: {
     stroke: theme.palette.type === 'dark' ? 'rgba(0,0,0,0.35)' : 'rgba(0,0,0,0.15)',
     fill: 'none',
-    strokeWidth: 2
+    strokeWidth: 3
   },
   circle2: {
     stroke: theme.palette.primary.main,

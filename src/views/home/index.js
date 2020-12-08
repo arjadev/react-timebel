@@ -46,13 +46,19 @@ function Home() {
       title="Home"
     >
       <Container maxWidth="lg">
-        <Button
-          color='primary'
-          variant="contained"
-          onClick={handleApplicationOpen}
+        <Grid
+          container
+          justify={'flex-end'}
         >
-          +
-        </Button>
+          <Button
+            color='primary'
+            variant="contained"
+            onClick={handleApplicationOpen}
+          >
+            + Add Event
+          </Button>
+        </Grid>
+        
 
         <Box mt={2}>
           <Grid

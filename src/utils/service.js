@@ -12,6 +12,13 @@ class UtilService {
       return d.getFullYear() + '-' + padWithZero(d.getMonth()+1)+'-' + padWithZero(d.getDate()) + 'T' + d.getHours() + ':' + d.getMinutes()
   }
 
+  static getOnlineColor(status) {
+    let color = 'green';
+    if (status === 'away') { color = 'grey'}
+    if (status === 'offline') { color = 'red'}
+    return color;
+  }
+
 }
 
 export default UtilService

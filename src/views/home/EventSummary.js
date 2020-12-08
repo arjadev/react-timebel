@@ -5,10 +5,7 @@ import {
     Card,
     CardContent,
     CardHeader,
-    // Grid,
     Divider,
-    // Typography,
-    // makeStyles
 } from '@material-ui/core';
 
 function EventSummary({ className, ...rest }) {
@@ -19,7 +16,7 @@ function EventSummary({ className, ...rest }) {
                 <CardHeader title="Event Summary" />
                 <Divider />
                 <CardContent>
-                    
+                    Comming soon!
                 </CardContent>
             </Card>
         </Box>

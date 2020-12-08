@@ -1,14 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export const PARTICIPANTS = [
-  {
-    id: uuidv4(),
-    watch: 'Apple Watch 5',
-    name: 'Ekaterina Tankova',
-    image: '/static/users/1.png',
-    battery: 93,
-    connected: 'online',
-  },
+  // {
+  //   id: uuidv4(),
+  //   watch: 'Apple Watch 5',
+  //   name: 'Ekaterina Tankova',
+  //   image: '/static/users/1.png',
+  //   battery: 93,
+  //   connected: 'online',
+  // },
   {
     id: uuidv4(),
     watch: 'Fitbit versa2',
@@ -19,8 +19,8 @@ export const PARTICIPANTS = [
   },
   {
     id: uuidv4(),
-    watch: 'Scosche Rythym+',
-    name: 'Alex Richardson',
+    watch: 'Rythym+',
+    name: 'Alex Richard',
     image: '/static/users/3.png',
     battery: 60,
     connected: 'away',
@@ -35,7 +35,7 @@ export const PARTICIPANTS = [
   },
   {
     id: uuidv4(),
-    watch: 'Nex',
+    watch: 'Scosche',
     name: 'Katarina Smith',
     image: '/static/users/5.jpg',
     battery: 41,

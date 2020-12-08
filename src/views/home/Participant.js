@@ -35,14 +35,12 @@ const StyledBadge = withStyles((theme) => ({
   },
 }))(Badge);
 
-function Paricipant({ className, ...rest }) {
-
+function Paricipant() {
   return (
     <Box mt={3}>
       <Card>
         <CardHeader title="Participant" />
         <Divider />
-
         <CardContent>
           <Table>
             <TableBody>
@@ -51,7 +49,7 @@ function Paricipant({ className, ...rest }) {
                   hover
                   key={user.id}
                 >
-                  <TableCell>
+                  <TableCell padding={'none'}>
                     <Box
                       display="flex"
                       alignItems="center"
@@ -59,19 +57,26 @@ function Paricipant({ className, ...rest }) {
                       <StyledBadge
                         overlap="circle"
                         anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
+                          vertical: 'bottom',
+                          horizontal: 'right',
                         }}
                         variant="dot"
-                        >
+                        connected={user.connected}
+                      >
                         <Avatar alt="Remy Sharp" src={user.image} />
-                    </StyledBadge>
+                      </StyledBadge>
                       <Box ml={2}>
                         <Typography
                           variant="h6"
                           color="textPrimary"
                         >
                           {user.name}
+                        </Typography>
+                        <Typography
+                          variant="caption"
+                          color="textPrimary"
+                        >
+                          <span role="img">⌚</span>{user.watch}
                         </Typography>
                       </Box>
                     </Box>
@@ -83,12 +88,12 @@ function Paricipant({ className, ...rest }) {
                       alignItems="center"
                       justifyContent="flex-end"
                     >
-                      <Box mr={2}>
+                      <Box mr={1}>
                         <Typography
                           align="right"
-                          variant="h6"
+                          variant="caption"
                           color="textPrimary"
-                        >
+                        >🔋
                           {user.battery}
                             %
                         </Typography>
