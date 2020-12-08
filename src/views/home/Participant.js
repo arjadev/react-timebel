@@ -76,7 +76,7 @@ function Paricipant() {
                           variant="caption"
                           color="textPrimary"
                         >
-                          <span role="img">⌚</span>{user.watch}
+                          <span aria-label="a clock blasting off" role="img">⌚</span>{user.watch}
                         </Typography>
                       </Box>
                     </Box>
@@ -93,7 +93,7 @@ function Paricipant() {
                           align="right"
                           variant="caption"
                           color="textPrimary"
-                        >🔋
+                        ><span aria-label="a battery blasting off" role="img">🔋</span>
                           {user.battery}
                             %
                         </Typography>
