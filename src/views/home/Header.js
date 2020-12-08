@@ -66,8 +66,9 @@ function Header({ className, ...rest }) {
         <Button
           component={RouterLink}
           to="/app/management/products"
+          color='primary'
         >
-          Cancel
+          +
         </Button>
       </Grid>
     </Grid>

@@ -49,9 +49,7 @@ function TopBar({ className, ...rest }) {
             variant="caption"
             color="textSecondary"
           >
-            Version
-            {' '}
-            1.0.0
+            Immersin
           </Typography>
         </Hidden>
         <Box flexGrow={1} />

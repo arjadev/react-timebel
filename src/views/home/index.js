@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function ProductCreateView() {
+function Home() {
   const classes = useStyles();
 
   return (
@@ -29,4 +29,4 @@ function ProductCreateView() {
   );
 }
 
-export default ProductCreateView;
+export default Home;

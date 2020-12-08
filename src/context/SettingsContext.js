@@ -5,7 +5,6 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { THEMES } from 'src/constants';
 import { storeSettings } from 'src/utils/settings';
 
 const SettingsContext = createContext();
@@ -13,7 +12,7 @@ const SettingsContext = createContext();
 const defaultSettings = {
   direction: 'ltr',
   responsiveFontSizes: true,
-  theme: THEMES.ONE_DARK
+  theme: 'LIGHT'
 };
 
 export function SettingsProvider({ settings, children }) {

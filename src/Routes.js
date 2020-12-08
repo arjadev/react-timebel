@@ -9,9 +9,9 @@ import {
   Redirect,
   Route
 } from 'react-router-dom';
-import MainLayout from 'src/layouts/MainLayout';
+import MainLayout from 'src/components/MainLayout';
 import LoadingScreen from 'src/components/LoadingScreen';
-import ProductCreateView from './views/management/ProductCreateView';
+import Home from './views/home';
 
 const routesConfig = [
   {
@@ -22,7 +22,7 @@ const routesConfig = [
   {
     exact: true,
     path: '/404',
-    component: lazy(() => import('src/views/pages/Error404View'))
+    component: lazy(() => import('src/views/Error404View'))
   },
   {
     path: '*',
@@ -31,7 +31,7 @@ const routesConfig = [
       {
         exact: true,
         path: '/home',
-        component: ProductCreateView
+        component: Home
       },
       {
         component: () => <Redirect to="/404" />
