@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingTop: 8,
     paddingBottom: 8,
   },
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
   view: {
     maxHeight: 400,
-    overflowY: 'scroll'
+    overflowY: 'auto'
   }
 }));
 
@@ -165,7 +166,7 @@ function Paricipant() {
           <Box
             display="flex"
             alignItems="center"
-            justifyContent="flex-end"
+            justifyContent="center"
           >
             <Box mr={1} display="flex" justifyContent="center" alignItems='center'>
               <BatteryChargingFullIcon style={{ color: user.standby ? green[800] : orange[500] }}/>

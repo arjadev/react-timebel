@@ -13,7 +13,6 @@ import {
   MenuItem,
   makeStyles
 } from '@material-ui/core';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -21,6 +20,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const useStyles = makeStyles(() => ({
   menu: {
     width: 170,
+  },
+  more: {
+    width: 30, 
+    height: 30,
+    background: `url('/static/more.png')`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
   }
 }));
 
@@ -29,7 +35,9 @@ function GenericMoreButton(props) {
   const moreRef = useRef(null);
   const [openMenu, setOpenMenu] = useState(false);
 
-  const handleMenuOpen = () => {
+  const handleMenuOpen = (e) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     setOpenMenu(true);
   };
 
@@ -44,9 +52,8 @@ function GenericMoreButton(props) {
           {...props}
           onClick={handleMenuOpen}
           ref={moreRef}
-        >
-          <MoreIcon fontSize="small" />
-        </IconButton>
+          className={classes.more}
+        />
       </Tooltip>
       <Menu
         anchorEl={moreRef.current}
