@@ -12,6 +12,7 @@ import {
     ButtonGroup,
     Box
 } from '@material-ui/core';
+import UtilService from 'src/utils/service';
 
 const useStyles = makeStyles((theme) => ({
     row: {
@@ -39,9 +40,10 @@ function EventInformation({ className, ...rest }) {
             <CardHeader title="Event Information" />
             <Divider />
             <CardContent>
-                <InfoItem name={'ID'} value={'95AS2XE12T'}/>
-                <InfoItem name={'Name'} value={'Harry Potter AD'}/>
-                <InfoItem name={'Dates'} value={'10/21/20 9 AM PST - 10/22/20 10 PM PST'}/>
+                <InfoItem name={'Event ID'} value={'95AS2XE12T'}/>
+                <InfoItem name={'Event Title'} value={'Harry Potter AD'}/>
+                <InfoItem name={'Start'} value={UtilService.getLocalDateTime('2020-12-01')}/>
+                <InfoItem name={'End'} value={UtilService.getLocalDateTime('2020-12-27')}/>
                 <Grid
                     container
                     spacing={1}

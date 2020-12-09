@@ -10,7 +10,8 @@ import {
   TextField,
   Typography,
   makeStyles,
-  Switch
+  Switch,
+  FormControlLabel
 } from '@material-ui/core';
 import UtilService from 'src/utils/service';
 
@@ -32,6 +33,9 @@ function EventModal({
   ...rest
 }) {
   const [value, setValue] = useState('');
+  const [toggleAsync, setToggleAsync] = useState(true);
+  const [toggleModerated , setToggleModerated] = useState(false);
+
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -46,6 +50,16 @@ function EventModal({
     });
     onApply();
   };
+
+  const handleToggle = () => {
+    if(toggleAsync){
+      setToggleAsync(false);
+      setToggleModerated(true);
+    } else {
+      setToggleAsync(true);
+      setToggleModerated(false);
+    }
+  }
 
   return (
     <Dialog
@@ -90,7 +104,7 @@ function EventModal({
             FormHelperTextProps={{ classes: { root: classes.helperText } }}
             fullWidth
             helperText={`${200 - value.length} characters left`}
-            label="Short Note"
+            label="Description"
             multiline
             onChange={handleChange}
             placeholder="What excites you about this event?"
@@ -101,20 +115,20 @@ function EventModal({
         </Box>
 
         <Box mt={3}>
-            <Grid container spacing={3}>
-                <Grid item md={6} xs={12}>
-                    <TextField
-                        id="start-date"
-                        label="Start Date/Time"
-                        type="datetime-local"
-                        className={classes.textField}
-                        defaultValue={UtilService.getDateTime(new Date())}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </Grid>
-                <Grid item md={6} xs={12}>
+          <Grid container spacing={3}>
+            <Grid item md={6} xs={12}>
+              <TextField
+                id="start-date"
+                label="Start Date/Time"
+                type="datetime-local"
+                className={classes.textField}
+                defaultValue={UtilService.getDateTime(new Date())}
+                InputLabelProps={{
+                    shrink: true,
+                }}
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
                     <TextField
                         id="end-date"
                         label="End Date/Time"
@@ -125,29 +139,27 @@ function EventModal({
                         }}
                     />
                 </Grid>
-            </Grid>
+          </Grid>
         </Box>
 
         <Box mt={3}>
-
-            <Typography
-                variant="body2"
-                color="textSecondary"
-            >
-                This will give the event ASYNC or MODERATED 
-            </Typography>
-
-            <Switch
-              color="primary"
-              edge="start"
-              name="discountedPrices"
-            />
-
+          <Grid container spacing={3}>
+            <Grid item md={6} xs={12}>
+              <FormControlLabel
+                control={<Switch color="primary" checked={toggleAsync} onChange={handleToggle} name="Async" />}
+                label="ASYNC"
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <FormControlLabel
+                control={<Switch color="primary" checked={toggleModerated} onChange={handleToggle} name="Moderated" />}
+                label="MODERATED"
+              />
+            </Grid>
+          </Grid>
         </Box>
 
-        <Box
-          mt={3}
-        >
+        <Box mt={3}>
           <Button
             onClick={handleApply}
             variant="contained"

@@ -68,7 +68,7 @@ function Home() {
             <Grid
               item
               xs={12}
-              lg={3}
+              lg={4}
             >
               <EventInformation />
               <Participant />
@@ -76,7 +76,7 @@ function Home() {
             <Grid
               item
               xs={12}
-              lg={9}
+              lg={8}
             >
               <MainDataVisualization />
               <EventSummary />
