@@ -14,17 +14,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(3),
     paddingBottom: 100
   },
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
 }));
 
 function Home() {
@@ -41,43 +30,26 @@ function Home() {
   };
 
   return (
-    <Page
-      className={classes.root}
-      title="Home"
-    >
+    <Page className={classes.root} title="Home">
       <Container maxWidth="lg">
-        <Grid
-          container
-          justify={'flex-end'}
-        >
-          <Button
-            color='primary'
-            variant="contained"
-            onClick={handleApplicationOpen}
-          >
+
+        <Grid container justify={'flex-end'}>
+          <Button color='primary' variant="contained">
+            Export
+          </Button>
+          &nbsp;&nbsp;
+          <Button color='primary' variant="contained" onClick={handleApplicationOpen}>
             + Add Event
           </Button>
         </Grid>
         
-
         <Box mt={2}>
-          <Grid
-            container
-            spacing={3}
-          >
-            <Grid
-              item
-              xs={12}
-              lg={4}
-            >
+          <Grid container spacing={3}>
+            <Grid item xs={12} lg={4}>
               <EventInformation />
               <Participant />
             </Grid>
-            <Grid
-              item
-              xs={12}
-              lg={8}
-            >
+            <Grid item xs={12} lg={8}>
               <MainDataVisualization />
               <EventSummary />
             </Grid>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
     Card,
@@ -13,69 +13,94 @@ import {
     Box
 } from '@material-ui/core';
 import UtilService from 'src/utils/service';
+import Timer from './Timer';
 
-const useStyles = makeStyles((theme) => ({
+// const milionseconds = 86410;
+
+const useStyles = makeStyles(() => ({
     row: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
     },
-    online: {
-        backgroundColor: '#2ac940',
+    online: props =>({
+        backgroundColor: props.color,
         height: 12,
         width: 12,
         borderRadius: 6,
         marginRight: 5,
         marginTop: -6
-    },
+    }),
 }));
 
 function EventInformation({ className, ...rest }) {
 
     const classes = useStyles();
+    const [status, setStatus] = useState('UPCOMING');
 
     return (
 
         <Card>
+
             <CardHeader title="Event Information" />
+
             <Divider />
+
             <CardContent>
+
                 <InfoItem name={'Event ID'} value={'95AS2XE12T'}/>
+
                 <InfoItem name={'Event Title'} value={'Harry Potter AD'}/>
+
                 <InfoItem name={'Start'} value={UtilService.getLocalDateTime('2020-12-01')}/>
+
                 <InfoItem name={'End'} value={UtilService.getLocalDateTime('2020-12-27')}/>
-                <Grid
-                    container
-                    spacing={1}
-                >
+
+                <Grid container spacing={1}>
+
                     <Grid item xs={12} md={4}>
-                        <Typography
-                            variant="h6"
-                            color="textPrimary"
-                        >
+                        <Typography variant="h6" color="textPrimary">
                             Status
                         </Typography>
 
                     </Grid>
+
                     <Grid item xs={12} md={8} className={classes.row}>
-                        <div className={classes.online}></div>
+                        <div className={classes.online} style={{backgroundColor: UtilService.getStatusColor(status)}}></div>
                         <Typography
                             gutterBottom
                             color="textSecondary"
                             variant="caption"
                         >
-                            IN PROGRESS
+                            {status}
+                        </Typography>
+                    </Grid>
+
+                </Grid>
+
+                <InfoItem name={'Participant'} value={'Complete:11 - Pending:16'}/>
+
+                <Grid container spacing={1}>
+
+                    <Grid item xs={12} md={4}>
+                        <Typography variant="h6" color="textPrimary">
+                            Length
                         </Typography>
 
                     </Grid>
+
+                    <Grid item xs={12} md={8} className={classes.row}>
+                        <Timer initialMinute={0} initialSeconds={12} initialHour={0} initialDay={1}/>
+                    </Grid>
+
                 </Grid>
-                <InfoItem name={'Participant'} value={'Complete:11 - Pending:16'}/>
-                <InfoItem name={'Length'} value={'3m 17s'}/>
+
                 <Box mt={1}>
                     <ButtonGroup disableElevation size="small" variant="contained" color="default">
-                        <Button color="primary">Play</Button>
-                        <Button>Pause</Button>
-                        <Button>Stop</Button>
+                        <Button color="primary" onClick={()=>setStatus('LIVE')}>Play</Button>
+                        <Button onClick={()=>setStatus('PAUSED')}>Pause</Button>
+                        <Button onClick={()=>setStatus('STOPPED')}>Stop</Button>
+                        <Button onClick={()=>setStatus('COMPLETED')}>Reset</Button>
                     </ButtonGroup>
                 </Box>
             </CardContent>
@@ -93,10 +118,7 @@ export default EventInformation;
 
 function InfoItem(props){
    return (
-          <Grid
-            container
-            spacing={1}
-          >
+          <Grid container spacing={1}>
             <Grid item xs={12} md={4}>
                 <Typography
                     variant="h6"

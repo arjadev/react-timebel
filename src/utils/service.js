@@ -34,6 +34,30 @@ class UtilService {
     return color;
   }
 
+  static getStatusColor(status) {
+    let color = 'blue';
+    if (status === 'LIVE') { color = '#2ac940'}
+    if (status === 'PAUSED') { color = 'orange'}
+    if (status === 'STOPPED') { color = 'yellow'}
+    if (status === 'ENDED') { color = 'brown'}
+    if (status === 'COMPLETED') { color = 'red'}
+
+    return color;
+  }
+
+  static padWithZero(number) {
+    const string = number.toString();
+      if (number < 10) {
+        return "0" + string;
+      }
+    return string;
+  }
+
+  static timerDay(seconds) {
+    let result = Math.floor(seconds / 86400);
+    return result
+  }
+
 }
 
 export default UtilService

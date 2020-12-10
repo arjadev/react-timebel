@@ -189,7 +189,7 @@ function Paricipant() {
     <Box mt={3}>
       <Card>
 
-        <CardHeader title="Participant" />
+        <CardHeader title="Participants" />
 
         <Divider />
 
@@ -257,7 +257,7 @@ export default Paricipant;
 const earnings = {
     datasets: [
       {
-        data: [56, 24],
+        data: [56, '##'],
       }
     ],
     labels: ['Invited', 'Attended'],
