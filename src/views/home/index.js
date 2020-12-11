@@ -4,8 +4,8 @@ import Page from 'src/components/Page';
 import Application from './EventModal';
 import EventInformation from './EventInformation';
 import Participant from './Participant';
-import MainDataVisualization from './MainDataVisualization';
 import EventSummary from './EventSummary';
+import MainDataVisualization2 from './MainDataVisualization2';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +20,7 @@ function Home() {
   const classes = useStyles();
 
   const [openApplication, setOpenApplication] = useState(false);
+  const [status, setStatus] = useState('UPCOMING');
 
   const handleApplicationOpen = () => {
     setOpenApplication(true);
@@ -44,13 +45,13 @@ function Home() {
         </Grid>
         
         <Box mt={2}>
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
             <Grid item xs={12} lg={4}>
-              <EventInformation />
+              <EventInformation status={status} onChangeStatus={(e)=>setStatus(e)}/>
               <Participant />
             </Grid>
             <Grid item xs={12} lg={8}>
-              <MainDataVisualization />
+              <MainDataVisualization2 status={status}/>
               <EventSummary />
             </Grid>
           </Grid>

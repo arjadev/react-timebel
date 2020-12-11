@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Card,
@@ -14,8 +14,6 @@ import {
 } from '@material-ui/core';
 import UtilService from 'src/utils/service';
 import Timer from './Timer';
-
-// const milionseconds = 86410;
 
 const useStyles = makeStyles(() => ({
     row: {
@@ -33,10 +31,11 @@ const useStyles = makeStyles(() => ({
     }),
 }));
 
-function EventInformation({ className, ...rest }) {
+function EventInformation(props) {
 
     const classes = useStyles();
-    const [status, setStatus] = useState('UPCOMING');
+    // const [status, setStatus] = useState('UPCOMING');
+    const { status, onChangeStatus } = props;
 
     return (
 
@@ -78,7 +77,7 @@ function EventInformation({ className, ...rest }) {
 
                 </Grid>
 
-                <InfoItem name={'Participant'} value={'Complete:11 - Pending:16'}/>
+                <InfoItem name={'Participants'} value={'Complete:11 - Pending:16'}/>
 
                 <Grid container spacing={1}>
 
@@ -97,10 +96,10 @@ function EventInformation({ className, ...rest }) {
 
                 <Box mt={1}>
                     <ButtonGroup disableElevation size="small" variant="contained" color="default">
-                        <Button color="primary" onClick={()=>setStatus('LIVE')}>Play</Button>
-                        <Button onClick={()=>setStatus('PAUSED')}>Pause</Button>
-                        <Button onClick={()=>setStatus('STOPPED')}>Stop</Button>
-                        <Button onClick={()=>setStatus('COMPLETED')}>Reset</Button>
+                        <Button color="primary" onClick={()=>onChangeStatus('LIVE')}>Play</Button>
+                        <Button onClick={()=>onChangeStatus('PAUSED')}>Pause</Button>
+                        <Button onClick={()=>onChangeStatus('STOPPED')}>Stop</Button>
+                        <Button onClick={()=>onChangeStatus('COMPLETED')}>Reset</Button>
                     </ButtonGroup>
                 </Box>
             </CardContent>

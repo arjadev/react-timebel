@@ -257,7 +257,7 @@ export default Paricipant;
 const earnings = {
     datasets: [
       {
-        data: [56, '##'],
+        data: [16, '#'],
       }
     ],
     labels: ['Invited', 'Attended'],
