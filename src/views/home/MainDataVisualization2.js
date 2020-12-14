@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Chart from 'react-apexcharts';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import { Card, CardContent, CardHeader, Divider, Box, TextField, FormControlLabel, Checkbox, makeStyles, FormControl, ListItemText, MenuItem, Select, InputLabel, Input, Chip } from '@material-ui/core';
+import { Card, CardContent, CardHeader, Divider, Box, TextField, FormControlLabel, Checkbox, makeStyles, FormControl, ListItemText, MenuItem, Select, InputLabel, Input } from '@material-ui/core';
 import UtilService from 'src/utils/service';
 import {ChatOption1, ChatOption2, ChatOption3} from '../../utils/chatOption';
 
@@ -9,13 +9,9 @@ function MainDataVisualization2(props) {
   const classes = useStyles();
 
   const isMountedRef = useIsMountedRef();
-  const [data, setData] = useState({
-    scores: [],
-    hearts: [],
-    safety: []
-  });
+  const [data, setData] = useState([]);
   const [filters, setFilters] = useState({
-    category: null,
+    category: 'all',
     availability: null,
     config: 'heart',
     inStock: null,
@@ -25,35 +21,34 @@ function MainDataVisualization2(props) {
 
   const timerToClearSomewhere = useRef(null) 
 
-  const getData = useCallback(() => {
+  const getData = useCallback((attenders) => {
     setTimeout(() => {
       if (isMountedRef.current) {
         setData((prevData) => {
-          const randomScore = UtilService.getRandomInt(0, 100);
-          const randomHeart = UtilService.getRandomInt(60, 90);
-          const randomSafety = UtilService.getRandomInt(12, 18);
-          const newData={
-            ...prevData,
-            scores:[
-              ...prevData.scores,
-              [
-                new Date().getTime(), randomScore / 10,
+          return attenders.map(user=>{
+            const randomScore = UtilService.getRandomInt(0, 100);
+            const randomHeart = UtilService.getRandomInt(60, 90);
+            const randomSafety = UtilService.getRandomInt(12, 18);
+            const userData=prevData.find(item=>item.id === user.id);
+            const newData={
+              ...userData,
+              id: user.id,
+              name: user.name,
+              scores:[
+                ...userData?.scores||[],
+                [new Date().getTime(), randomScore / 10]
+              ],
+              hearts:[
+                ...userData?.hearts||[],
+                [new Date().getTime(), randomHeart]
+              ],
+              safety:[
+                ...userData?.safety||[],
+                [new Date().getTime(), randomSafety]
               ]
-            ],
-            hearts:[
-              ...prevData.hearts,
-              [
-                new Date().getTime(), randomHeart,
-              ]
-            ],
-            safety:[
-              ...prevData.safety,
-              [
-                new Date().getTime(), randomSafety,
-              ]
-            ]
-          }
-          return newData;
+            }
+            return newData;
+          })
         });
       }
     }, 500);
@@ -75,21 +70,6 @@ function MainDataVisualization2(props) {
     setFilters((prevFilters) => ({
       ...prevFilters,
       category: value
-    }));
-  };
-
-  const handleAvailabilityChange = (event) => {
-    event.persist();
-
-    let value = null;
-
-    if (event.target.value !== 'all') {
-      value = event.target.value;
-    }
-
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      availability: value
     }));
   };
 
@@ -140,7 +120,7 @@ function MainDataVisualization2(props) {
 
   useEffect(() => {
     if(props.status === 'LIVE') {
-      timerToClearSomewhere.current = setInterval(() => getData(), 2000);
+      timerToClearSomewhere.current = setInterval(() => getData(props.attenders), 2000);
       return () => {
         clearTimeout(timerToClearSomewhere.current)
       }
@@ -148,9 +128,7 @@ function MainDataVisualization2(props) {
       setData([]);
     }
 
-  }, [getData, props.status]);
-
-  console.log('+++++++++++++++++++++++++', props.attenders)
+  }, [getData, props.status, props.attenders]);
 
   return (
     <Card>
@@ -188,10 +166,10 @@ function MainDataVisualization2(props) {
             renderValue={(e) => <>{e.length + ' selected'}</>}
             MenuProps={MenuProps}
           >
-            {props.attenders.map((name) => (
-              <MenuItem key={name} value={name}>
-                <Checkbox checked={personName.indexOf(name) > -1} />
-                <ListItemText primary={name} />
+            {props.attenders.map((u) => (
+              <MenuItem key={u.id} value={u.name}>
+                <Checkbox checked={personName.indexOf(u.name) > -1} />
+                <ListItemText primary={u.name} />
               </MenuItem>
             ))}
           </Select>
@@ -246,20 +224,20 @@ function MainDataVisualization2(props) {
         <div id="chart">
           <div id="chart-timeline">
             { filters.config === 'heart' && <Chart 
-              options={ChatOption1} type="area" height={450}
-              series={[{data: data.hearts}]}
+              options={ChatOption1} height={450}
+              series={data.filter(u=>personName.indexOf(u?.name) > -1 || filters.category === 'all').map(item=> ({name: item?.name, data: item?.hearts}))}
             />}
             { filters.config === 'score' && <Chart 
-              options={ChatOption2} type="area" height={450}
-              series={[{data: data.scores}]}
+              options={ChatOption2} height={450}
+              series={data.filter(u=>personName.indexOf(u?.name) > -1 || filters.category === 'all').map(item=> ({name: item?.name, data: item?.scores}))}
             />}
             { filters.config === 'safety' && <Chart 
-              options={ChatOption3} type="area" height={450}
-              series={[{data: data.safety}]}
+              options={ChatOption3} height={450}
+              series={data.filter(u=>personName.indexOf(u?.name) > -1 || filters.category === 'all').map(item=> ({name: item?.name, data: item?.safety}))}
             />}
           </div>
         </div>
-    </CardContent>
+      </CardContent>
     </Card>
   )
 }
@@ -341,7 +319,6 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     maxWidth: 300,
     flexBasis: 200
-
   },
   chips: {
     display: 'flex',

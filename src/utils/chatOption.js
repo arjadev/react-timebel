@@ -1,7 +1,7 @@
 export const ChatOption1 = {
   chart: {
     id: 'area-datetime',
-    type: 'area',
+    // type: 'area',
     height: 350,
     zoom: {
       autoScaleYaxis: true
@@ -64,22 +64,22 @@ export const ChatOption1 = {
       format: 'dd MMM yyyy'
     }
   },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shadeIntensity: 1,
-      opacityFrom: 0.7,
-      opacityTo: 0.9,
-      stops: [0, 100]
-    }
-  },
-  colors: ["#c2185b"]
+  // fill: {
+  //   type: 'gradient',
+  //   gradient: {
+  //     shadeIntensity: 1,
+  //     opacityFrom: 0.7,
+  //     opacityTo: 0.9,
+  //     stops: [0, 100]
+  //   }
+  // },
+  // colors: ["#b71c1c", "#880e4f", "#4a148c", "#c62828", "#ad1457", "#6a1b9a", "#d32f2f", "#c2185b", "#7b1fa2", "#e53935"]
 }
 
 export const ChatOption2 = {
   chart: {
     id: 'area-datetime',
-    type: 'area',
+    // type: 'area',
     height: 350,
     zoom: {
       autoScaleYaxis: true
@@ -142,22 +142,22 @@ export const ChatOption2 = {
       format: 'dd MMM yyyy'
     }
   },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shadeIntensity: 1,
-      opacityFrom: 0.7,
-      opacityTo: 0.9,
-      stops: [0, 100]
-    }
-  },
-  colors: ["#f9a825"]
+  // fill: {
+  //   type: 'gradient',
+  //   gradient: {
+  //     shadeIntensity: 1,
+  //     opacityFrom: 0.7,
+  //     opacityTo: 0.9,
+  //     stops: [0, 100]
+  //   }
+  // },
+  // colors: ["#f9a825"]
 }
 
 export const ChatOption3 = {
   chart: {
     id: 'area-datetime',
-    type: 'area',
+    // type: 'area',
     height: 350,
     zoom: {
       autoScaleYaxis: true
@@ -220,14 +220,14 @@ export const ChatOption3 = {
       format: 'dd MMM yyyy'
     }
   },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shadeIntensity: 1,
-      opacityFrom: 0.7,
-      opacityTo: 0.9,
-      stops: [0, 100]
-    }
-  },
-  colors: ["#039be5"]
+  // fill: {
+  //   type: 'gradient',
+  //   gradient: {
+  //     shadeIntensity: 1,
+  //     opacityFrom: 0.7,
+  //     opacityTo: 0.9,
+  //     stops: [0, 100]
+  //   }
+  // },
+  // colors: ["#039be5"]
 }

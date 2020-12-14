@@ -34,18 +34,18 @@ function Paricipant(props) {
     if(checkedList.length === participants.length){
       setCheckedList([]);
     } else{
-      setCheckedList(participants.map(item => item.id));
+      setCheckedList(participants);
     }
   };
 
-  const handleCheck = (id) => {
+  const handleCheck = (user) => {
     let newArray = [...checkedList];
 
-    if (!checkedList.includes(id)) {
-      newArray.push(id);
+    if (checkedList.findIndex(u => u.id === user.id) === -1) {
+      newArray.push(user);
     } else {
       newArray.splice(
-        newArray.findIndex(item => item === id),
+        newArray.findIndex(u => u.id === user.id),
         1
       );
     }
@@ -60,8 +60,8 @@ function Paricipant(props) {
     <div key={user.id} className={classes.participant}>
       <Grid container >
         <Checkbox
-          checked={checkedList.includes(user.id)}
-          onChange={()=>handleCheck(user.id)}
+          checked={checkedList.findIndex(u => u.id === user.id) !== -1}
+          onChange={()=>handleCheck(user)}
           color="primary"
           inputProps={{ 'aria-label': 'secondary checkbox' }}
         />
