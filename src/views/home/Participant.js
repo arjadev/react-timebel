@@ -54,7 +54,7 @@ function Paricipant(props) {
 
   useEffect(()=> {
     props.onChangeAttended(checkedList)
-  }, [checkedList])
+  }, [checkedList, props])
 
   const SortableItem = sortableElement(({user}) => 
     <div key={user.id} className={classes.participant}>
