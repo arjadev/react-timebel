@@ -58,6 +58,20 @@ class UtilService {
     return result
   }
 
+  static getRandomInt(min, max){
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  static getChartColor(config){
+    let color = '#c2185b';
+    if (config === 'heart') { color = '#2196f3'}
+    if (config === 'score') { color = '#f9a825'}
+
+    return color
+  }
+
 }
 
 export default UtilService

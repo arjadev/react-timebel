@@ -7,20 +7,12 @@ import Participant from './Participant';
 import EventSummary from './EventSummary';
 import MainDataVisualization2 from './MainDataVisualization2';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingTop: theme.spacing(3),
-    paddingBottom: 100
-  },
-}));
-
 function Home() {
   const classes = useStyles();
 
   const [openApplication, setOpenApplication] = useState(false);
   const [status, setStatus] = useState('UPCOMING');
+  const [attenders, setAttenders] = useState([]);
 
   const handleApplicationOpen = () => {
     setOpenApplication(true);
@@ -31,7 +23,7 @@ function Home() {
   };
 
   return (
-    <Page className={classes.root} title="Home">
+    <Page className={classes.root} title="Test Page">
       <Container maxWidth="lg">
 
         <Grid container justify={'flex-end'}>
@@ -48,10 +40,10 @@ function Home() {
           <Grid container spacing={2}>
             <Grid item xs={12} lg={4}>
               <EventInformation status={status} onChangeStatus={(e)=>setStatus(e)}/>
-              <Participant />
+              <Participant onChangeAttended={(e)=>{setAttenders(e)}} />
             </Grid>
             <Grid item xs={12} lg={8}>
-              <MainDataVisualization2 status={status}/>
+              <MainDataVisualization2 status={status} attenders={attenders}/>
               <EventSummary />
             </Grid>
           </Grid>
@@ -68,3 +60,12 @@ function Home() {
 }
 
 export default Home;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.dark,
+    minHeight: '100%',
+    paddingTop: theme.spacing(3),
+    paddingBottom: 100
+  },
+}));

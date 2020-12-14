@@ -1,48 +1,146 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Chart from 'react-apexcharts';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-} from '@material-ui/core';
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+import { Card, CardContent, CardHeader, Divider, Box, TextField, FormControlLabel, Checkbox, makeStyles, FormControl, ListItemText, MenuItem, Select, InputLabel, Input, Chip } from '@material-ui/core';
+import UtilService from 'src/utils/service';
+import {ChatOption1, ChatOption2, ChatOption3} from '../../utils/chatOption';
 
 function MainDataVisualization2(props) {
+  const classes = useStyles();
 
   const isMountedRef = useIsMountedRef();
-  const [data, setData] = useState([]);
-  const timerToClearSomewhere = useRef(null) //now you can pass timer to another component
+  const [data, setData] = useState({
+    scores: [],
+    hearts: [],
+    safety: []
+  });
+  const [filters, setFilters] = useState({
+    category: null,
+    availability: null,
+    config: 'heart',
+    inStock: null,
+    isShippable: null
+  });
+  const [personName, setPersonName] = useState([]);
+
+  const timerToClearSomewhere = useRef(null) 
 
   const getData = useCallback(() => {
-    if (isMountedRef.current) {
-      setData((prevData) => {
-        const newData = [...prevData];
-        return newData;
-      });
-    }
-
     setTimeout(() => {
       if (isMountedRef.current) {
         setData((prevData) => {
-          const newData = [...prevData];
-          const random = getRandomInt(0, 100);
-          newData.push([new Date().getTime(), random / 10]);
+          const randomScore = UtilService.getRandomInt(0, 100);
+          const randomHeart = UtilService.getRandomInt(60, 90);
+          const randomSafety = UtilService.getRandomInt(12, 18);
+          const newData={
+            ...prevData,
+            scores:[
+              ...prevData.scores,
+              [
+                new Date().getTime(), randomScore / 10,
+              ]
+            ],
+            hearts:[
+              ...prevData.hearts,
+              [
+                new Date().getTime(), randomHeart,
+              ]
+            ],
+            safety:[
+              ...prevData.safety,
+              [
+                new Date().getTime(), randomSafety,
+              ]
+            ]
+          }
           return newData;
         });
       }
     }, 500);
   }, [isMountedRef]);
 
+  const handleChange = (event) => {
+    setPersonName(event.target.value);
+  };
+
+  const handleCategoryChange = (event) => {
+    event.persist();
+
+    let value = null;
+
+    if (event.target.value !== 'all') {
+      value = event.target.value;
+    }
+
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      category: value
+    }));
+  };
+
+  const handleAvailabilityChange = (event) => {
+    event.persist();
+
+    let value = null;
+
+    if (event.target.value !== 'all') {
+      value = event.target.value;
+    }
+
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      availability: value
+    }));
+  };
+
+  const handleConfigChange = (event) => {
+    event.persist();
+
+    let value = null;
+
+    if (event.target.value !== 'all') {
+      value = event.target.value;
+    }
+
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      config: value
+    }));
+  };
+
+  const handleStockChange = (event) => {
+    event.persist();
+
+    let value = null;
+
+    if (event.target.checked) {
+      value = true;
+    }
+
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      inStock: value
+    }));
+  };
+
+  const handleShippableChange = (event) => {
+    event.persist();
+
+    let value = null;
+
+    if (event.target.checked) {
+      value = true;
+    }
+
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      isShippable: value
+    }));
+  };
+
   useEffect(() => {
     if(props.status === 'LIVE') {
-      timerToClearSomewhere.current = setInterval(() => getData(), 1000);
+      timerToClearSomewhere.current = setInterval(() => getData(), 2000);
       return () => {
         clearTimeout(timerToClearSomewhere.current)
       }
@@ -52,97 +150,220 @@ function MainDataVisualization2(props) {
 
   }, [getData, props.status]);
 
+  console.log('+++++++++++++++++++++++++', props.attenders)
+
   return (
     <Card>
       <CardHeader title="Main Data Visualization" />
       <Divider />
+      <Box mt={3} display="flex" alignItems="center" ml={3} mb={3}>
+        <TextField
+          className={classes.categoryField}
+          label="Default View"
+          name="category"
+          onChange={handleCategoryChange}
+          select
+          multiple
+          SelectProps={{ native: true }}
+          value={filters.category || 'all'}
+        >
+          {categoryOptions.map((categoryOption) => (
+            <option
+              key={categoryOption.id}
+              value={categoryOption.id}
+            >
+              {categoryOption.name}
+            </option>
+          ))}
+        </TextField>
+        {filters.category === 'single' && props.attenders.length > 0 && <FormControl className={classes.formControl}>
+          <InputLabel id="demo-mutiple-checkbox-label">Attenders</InputLabel>
+          <Select
+            labelId="demo-mutiple-checkbox-label"
+            id="demo-mutiple-checkbox"
+            multiple
+            value={personName}
+            onChange={handleChange}
+            input={<Input />}
+            renderValue={(e) => <>{e.length + ' selected'}</>}
+            MenuProps={MenuProps}
+          >
+            {props.attenders.map((name) => (
+              <MenuItem key={name} value={name}>
+                <Checkbox checked={personName.indexOf(name) > -1} />
+                <ListItemText primary={name} />
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>}
+        <TextField
+          className={classes.availabilityField}
+          label="Type"
+          name="availability"
+          onChange={handleConfigChange}
+          select
+          SelectProps={{ native: true }}
+          value={filters.config || 'all'}
+        >
+          {configOptions.map((configOption) => (
+            <option
+              key={configOption.id}
+              value={configOption.id}
+            >
+              {configOption.name}
+            </option>
+          ))}
+        </TextField>
+        <Box display='flex' flexDirection="column">
+          <FormControlLabel
+            className={classes.stockField}
+            control={(
+              <Checkbox
+                checked={!!filters.inStock}
+                onChange={handleStockChange}
+                name="inStock"
+                size='small'
+              />
+            )}
+            label="Moderated"
+          />
+          <FormControlLabel
+            className={classes.shippableField}
+            control={(
+              <Checkbox
+                checked={!!filters.isShippable}
+                onChange={handleShippableChange}
+                name="Shippable"
+                size='small'
+              />
+            )}
+            label="ASYNC"
+          />
+        </Box>
+      </Box>
+      <Divider />
       <CardContent>
-    <div id="chart">
-      <div id="chart-timeline">
-        <Chart options={options} series={[{ data }]} type="area" height={450} />
-      </div>
-    </div>
+        <div id="chart">
+          <div id="chart-timeline">
+            { filters.config === 'heart' && <Chart 
+              options={ChatOption1} type="area" height={450}
+              series={[{data: data.hearts}]}
+            />}
+            { filters.config === 'score' && <Chart 
+              options={ChatOption2} type="area" height={450}
+              series={[{data: data.scores}]}
+            />}
+            { filters.config === 'safety' && <Chart 
+              options={ChatOption3} type="area" height={450}
+              series={[{data: data.safety}]}
+            />}
+          </div>
+        </div>
     </CardContent>
     </Card>
   )
-
 }
 
 export default MainDataVisualization2;
 
-const options = {
-  chart: {
-    id: 'area-datetime',
-    type: 'area',
-    height: 350,
-    zoom: {
-      autoScaleYaxis: true
+const categoryOptions = [
+  {
+    id: 'all',
+    name: 'All Participants'
+  },
+  {
+    id: 'single',
+    name: 'By Participant'
+  }
+];
+
+const configOptions = [
+  {
+    id: 'heart',
+    name: 'Heart Rate'
+  },
+  {
+    id: 'score',
+    name: 'Immersion Score'
+  },
+  {
+    id: 'safety',
+    name: 'Safety Value'
+  }
+];
+
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  bulkOperations: {
+    position: 'relative'
+  },
+  bulkActions: {
+    paddingLeft: 4,
+    paddingRight: 4,
+    marginTop: 6,
+    position: 'absolute',
+    width: '100%',
+    zIndex: 2,
+    backgroundColor: theme.palette.background.default
+  },
+  bulkAction: {
+    marginLeft: theme.spacing(2)
+  },
+  queryField: {
+    width: 500
+  },
+  categoryField: {
+    flexBasis: 200
+  },
+  availabilityField: {
+    marginLeft: theme.spacing(2),
+    flexBasis: 200
+  },
+  stockField: {
+    marginLeft: theme.spacing(2)
+  },
+  shippableField: {
+    marginLeft: theme.spacing(2)
+  },
+  imageCell: {
+    fontSize: 0,
+    width: 68,
+    flexBasis: 68,
+    flexGrow: 0,
+    flexShrink: 0
+  },
+  image: {
+    height: 68,
+    width: 68
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    maxWidth: 300,
+    flexBasis: 200
+
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
+  },
+  noLabel: {
+    marginTop: theme.spacing(3),
+  },
+}));
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
     },
-    animations: {
-      enabled: true,
-      easing: 'linear',
-      dynamicAnimation: {
-        speed: 1000
-      }
-    }
   },
-  annotations: {
-    yaxis: [{
-      y: 30,
-      borderColor: '#999',
-      label: {
-        show: true,
-        text: 'Support',
-        style: {
-          color: "#fff",
-          background: '#00E396'
-        }
-      }
-    }],
-    xaxis: [{
-      x: new Date().getTime(),
-      borderColor: '#999',
-      yAxisIndex: 0,
-      label: {
-        show: true,
-        text: 'Rally',
-        style: {
-          color: "#fff",
-          background: '#775DD0'
-        }
-      }
-    }]
-  },
-  dataLabels: {
-    enabled: false
-  },
-  markers: {
-    size: 0,
-    style: 'hollow',
-  },
-  stroke: {
-    width: 2,
-    curve: 'smooth',
-    // lineCap: 'butt',
-    // dashArray: [0, 3]
-  },
-  xaxis: {
-    type: 'datetime',
-    min: new Date().getTime(),
-    tickAmount: 6,
-  },
-  tooltip: {
-    x: {
-      format: 'dd MMM yyyy'
-    }
-  },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shadeIntensity: 1,
-      opacityFrom: 0.7,
-      opacityTo: 0.9,
-      stops: [0, 100]
-    }
-  },
-}
+  variant: "menu",
+  getContentAnchorEl: null
+};
